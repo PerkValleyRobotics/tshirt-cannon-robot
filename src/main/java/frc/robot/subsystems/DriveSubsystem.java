@@ -4,24 +4,24 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.spark.SparkMax;
-import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveSubsystem extends SubsystemBase {
   /** Creates a new DriveSubsystem. */
 
-  private final SparkMax leftFrontDrive;
-  private final SparkMax leftBackDrive;
-  private final SparkMax rightFrontDrive;
-  private final SparkMax rightBackDrive;
+  private final VictorSPX leftFrontDrive;
+  private final VictorSPX leftBackDrive;
+  private final VictorSPX rightFrontDrive;
+  private final VictorSPX rightBackDrive;
 
   public DriveSubsystem() {
-    leftFrontDrive = new SparkMax(0, MotorType.kBrushless);
-    leftBackDrive = new SparkMax(1, MotorType.kBrushless);
-    rightFrontDrive = new SparkMax(2, MotorType.kBrushless);
-    rightBackDrive = new SparkMax(3, MotorType.kBrushless);
+    leftFrontDrive = new VictorSPX(0);
+    leftBackDrive = new VictorSPX(1);
+    rightFrontDrive = new VictorSPX(2);
+    rightBackDrive = new VictorSPX(3);
   }
 
   public void runDrive(double power) {
@@ -39,8 +39,8 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void runLeftDrive(double power) {
-    leftFrontDrive.set(power);
-    leftBackDrive.set(power);
+    leftFrontDrive.set(ControlMode.PercentOutput, power);
+    leftBackDrive.set(ControlMode.PercentOutput, power);
   }
 
   public void runLeftDrive() {
@@ -48,8 +48,8 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void runRightDrive(double power) {
-    rightFrontDrive.set(power);
-    rightBackDrive.set(power);
+    rightFrontDrive.set(ControlMode.PercentOutput, power);
+    rightBackDrive.set(ControlMode.PercentOutput, power);
   }
 
   public void runRightDrive() {
